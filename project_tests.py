@@ -123,8 +123,8 @@ def test_train_nn(train_nn):
     cross_entropy_loss = tf.constant(10.11)
     input_image = tf.placeholder(tf.float32, name='input_image')
     correct_label = tf.placeholder(tf.float32, name='correct_label')
-    keep_prob = tf.constant(0.9)# tf.placeholder(tf.float32, name='keep_prob')
-    learning_rate = tf.constant(1e-4)#tf.placeholder(tf.float32, name='learning_rate')
+    keep_prob =tf.placeholder(tf.float32, name='keep_prob_tensor')
+    learning_rate = tf.placeholder(tf.float32, name='learning_rate_tensor')
     with tf.Session() as sess:
         parameters = {
             'sess': sess,
@@ -135,8 +135,10 @@ def test_train_nn(train_nn):
             'cross_entropy_loss': cross_entropy_loss,
             'input_image': input_image,
             'correct_label': correct_label,
-            'keep_prob': keep_prob,
-            'learning_rate': learning_rate, 
+            'keep_prob_tensor': keep_prob,
+            'learning_rate_tensor': learning_rate, 
+            'keep_prob': 1.,
+            'learning_rate': 1e-4, 
             }
         _prevent_print(train_nn, parameters)
 

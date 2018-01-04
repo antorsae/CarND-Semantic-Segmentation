@@ -118,7 +118,6 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
     :param keep_prob: TF Placeholder for dropout keep probability
     :param learning_rate: TF Placeholder for learning rate
     """
-    # TODO: Implement function
     for epoch in range(1, epochs + 1):
         avg_train_loss = 0
         num_images = 0
@@ -144,14 +143,14 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
         print("EPOCH {:>2d} Loss = {:10.8f}  Time = {:2d}m{:02d}s".format(
             epoch, avg_train_loss, elapsed_train_m, elapsed_train_s))
     return
-#tests.test_train_nn(train_nn)
+tests.test_train_nn(train_nn)
 
 
 def run():
     num_classes = 2
     image_shape = (160, 576)
     batch_size = 1
-    epochs = 5
+    epochs = 20
     learning_rate = 1e-4
     keep_prob = 0.8
     data_dir = './data'
@@ -172,7 +171,7 @@ def run():
     # OPTIONAL: Augment Images for better results
     #  https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
     correct_label = tf.placeholder(tf.int32, (None, image_shape[0], image_shape[1], num_classes))
-    learning_rate_tensor = tf.placeholder(tf.int32, None)
+    learning_rate_tensor = tf.placeholder(tf.float32, None)
 
     with tf.Session() as sess:
         session_timestamp = str(int(time.time()))
